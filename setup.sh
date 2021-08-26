@@ -52,3 +52,37 @@ sudo systemctl status mongod
 
 # Running as expected, continue
 sudo systemctl enable mongod
+
+echo "
+-----------------------
+   PM2
+-----------------------"
+
+# Install pm2
+sudo npm install -g pm2
+
+# Start on system boot
+sudo pm2 startup systemctl
+
+echo "
+-----------------------
+   NGINX
+-----------------------"
+
+# Install NGINX
+sudo apt-get install -y nginx
+
+
+echo "
+-----------------------
+   Firewall
+-----------------------"
+
+# Allow ssh through firewall
+sudo ufw allow OpenSSH
+
+# Allow http & https through firewall
+sudo ufw allow 'Nginx Full'
+
+# Enable firewall
+sudo ufw --force enable
