@@ -9,7 +9,7 @@ Author: Kevin Ramsusson
 
 echo "
 -----------------------
-Let's start with NPM & NodeJS:
+    NPM & NodeJS:
 -----------------------"
 
 # Add latest nodejs using nodesource current version
@@ -28,7 +28,7 @@ echo "-----------------"
 
 echo "
 -----------------------
-   MongoDB
+    MongoDB
 -----------------------"
 # https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
 
@@ -55,7 +55,7 @@ sudo systemctl enable mongod
 
 echo "
 -----------------------
-   PM2
+    PM2
 -----------------------"
 
 # Install pm2
@@ -66,7 +66,7 @@ sudo pm2 startup systemctl
 
 echo "
 -----------------------
-   NGINX
+    NGINX
 -----------------------"
 
 # Install NGINX
@@ -75,7 +75,7 @@ sudo apt-get install -y nginx
 
 echo "
 -----------------------
-   Firewall
+    Firewall
 -----------------------"
 
 # Allow ssh through firewall
