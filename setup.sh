@@ -18,10 +18,6 @@ curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 # Install nodejs, npm
 sudo apt-get install -y nodejs
 
-# NOTE: IF DEBIAN COMMENT LINES ABOVE, UNCOMMENT BELOW
-# curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
-# apt-get install -y nodejs
-
 echo "Done with NPM & NodeJS, let's continue..."
 echo "-----------------"
 
