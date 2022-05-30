@@ -66,7 +66,10 @@ echo "
 sudo npm install -g pm2
 
 # Start on system boot
-sudo pm2 startup systemctl
+#sudo pm2 startup systemctl
+
+# New updated since ctl not working
+pm2 startup
 
 echo "
 -----------------------
