@@ -13,7 +13,10 @@ echo "
 -----------------------"
 
 # Add latest nodejs using nodesource current version
-curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+# curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+
+# Add version 16 (latest stable, check nodejs.org so it is still correct)
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 # Install nodejs, npm
 sudo apt-get install -y nodejs
@@ -25,16 +28,25 @@ echo "
 # https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
 
 # Import mongodb key and add to trusted keys
-curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+# curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+# New for mongodb 5
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+
 
 # Create the /etc/apt/sources.list.d/mongodb-org-4.4.list directory
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+# echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee 
+/etc/apt/sources.list.d/mongodb-org-4.4.list
+
+# Also updated for mongodb 5
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee 
+/etc/apt/sources.list.d/mongodb-org-5.0.list
 
 # Update server's local packages
 sudo apt-get update
 
 # Install mongodb
-sudo apt-get install mongodb-org
+sudo apt-get install -y mongodb-org
 
 # Start mongodb service
 sudo systemctl start mongod.service
