@@ -15,10 +15,8 @@ echo "
 # Add latest nodejs using nodesource current version
 # curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 
-# Add version 16 (latest stable, check nodejs.org so it is still correct)
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-
-# Install nodejs, npm
+# Add version 18 (latest stable, check nodejs.org so it is still correct)
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 
 echo "
