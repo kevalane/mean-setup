@@ -77,7 +77,10 @@ sudo apt install postgresql postgresql-contrib
 # start setting up
 sudo -u postgres psql
 
+sudo apt install redis-server
 
+# test it
+redis-cli PING
 
 echo "
 -----------------------
