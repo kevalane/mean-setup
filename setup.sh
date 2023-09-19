@@ -66,6 +66,21 @@ sudo systemctl enable mongod
 
 echo "
 -----------------------
+    POSTGRES & REDIS
+-----------------------"
+# POSTGRES
+# https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-22-04-quickstart
+sudo apt update
+
+sudo apt install postgresql postgresql-contrib
+
+# start setting up
+sudo -u postgres psql
+
+
+
+echo "
+-----------------------
     PM2
 -----------------------"
 
