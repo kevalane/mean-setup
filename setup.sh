@@ -12,17 +12,13 @@ echo "
     NPM & NodeJS:
 -----------------------"
 
-# [OUTDATED] Add version 18 (latest stable, check nodejs.org so it is still correct)
-# curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
-# sudo apt-get install -y nodejs
-
 # NEW
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 
-NODE_MAJOR=18
+NODE_MAJOR=20
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 
 sudo apt-get update
@@ -34,35 +30,34 @@ echo "
 -----------------------"
 # https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
 
-# Import mongodb key and add to trusted keys
-# curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+# ARTICLE:
+# https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
 
-# New for mongodb 5
-wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+# install if not installed already (probably is)
+sudo apt-get install gnupg curl
 
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 
-# Create the /etc/apt/sources.list.d/mongodb-org-4.4.list directory
-# echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee 
-/etc/apt/sources.list.d/mongodb-org-4.4.list
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
-# Also updated for mongodb 5
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee 
-/etc/apt/sources.list.d/mongodb-org-5.0.list
-
-# Update server's local packages
 sudo apt-get update
 
-# Install mongodb
 sudo apt-get install -y mongodb-org
 
-# Start mongodb service
-sudo systemctl start mongod.service
+sudo systemctl start mongod
 
-# Check status
+# If unit mongod.service not found
+sudo systemctl daemon-reload
+
 sudo systemctl status mongod
 
-# Running as expected, continue
 sudo systemctl enable mongod
+
+sudo systemctl stop mongod
+
+sudo systemctl restart mongod
+
+mongosh
 
 echo "
 -----------------------
